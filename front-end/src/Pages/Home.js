@@ -1,12 +1,31 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import SelectMovie from '../components/SelectMovie'
 import LastBookingdetails from '../components/lastBookingdetails'
 import TimeSchedule from '../components/TimeSchedule'
 import SelectSeats from '../components/SelectSeat'
 import '../Css/home.css'
+import BsContext from '../Context/BScontext'
 
 const Home = () => {
-  const handlebooknow=()=>{
+  const context=useContext(BsContext)
+  const{
+    movie,
+    time,
+    noOfseat,
+    handlePostBooking,
+    setErrorPop,
+    setErrorMessage,
+
+
+      
+  }=context
+  const handleBookNow=()=>{
+    if(!movie){
+      setErrorPop(true)
+      setErrorMessage("Please select a movie")
+    }else{
+      handlePostBooking()
+    }
     
   }
   return (
